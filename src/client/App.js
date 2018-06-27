@@ -3,23 +3,22 @@ import Cell from './cell/cell';
 import './app.css';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { username: null };
-  }
+	constructor(props) {
+		super(props);
+		this.state = { username: null };
+	}
 
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
-  }
+	componentDidMount() {
+		fetch('/api/getUsername')
+			.then(res => res.json())
+			.then(user => this.setState({ username: user.username }));
+	}
 
-  render() {
-    const { username } = this.state;
-    return (
-      <div>
-        <Cell />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				<Cell />
+			</div>
+		);
+	}
 }

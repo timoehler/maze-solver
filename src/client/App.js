@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Cell from './cell/cell';
 import './app.css';
 
 export default class App extends Component {
@@ -17,13 +18,7 @@ export default class App extends Component {
     const { username } = this.state;
     return (
       <div>
-        {username ? (
-          <h1>
-            Hello {username}
-          </h1>
-        ) : (
-          <h1>Loading.... please wait!</h1>
-        )}
+        <Cell />
       </div>
     );
   }

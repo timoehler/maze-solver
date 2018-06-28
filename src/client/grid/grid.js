@@ -12,6 +12,13 @@ class Grid extends Component {
     };
   }
 
+  componentDidUpdate (prevProps) {
+    const { initialModel } = this.props;
+    if (prevProps.initialModel !== initialModel) {
+      this.setState({ model: initialModel });
+    }
+  }
+
   onCellTypeChanged = (rowIndex, colIndex, type) => {
     const { model } = this.state;
     const { modelChanged } = this.props;

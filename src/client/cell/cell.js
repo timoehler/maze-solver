@@ -1,48 +1,46 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import './cell.less';
 
 class Cell extends Component {
-	constructor (props) {
-		super();
-		
-		const { initialSymbol } = props;
+  constructor(props) {
+    super();
+    const { initialType } = props;
+    this.state = {
+      type: initialType,
+    };
+  }
 
-		this.state = {
-			symbol: initialSymbol,
-		};
-	}
+  makeTypeCssFriendly = (symbol) => {
+    switch (symbol) {
+      case '.':
+        return 'road';
+      case '#':
+        return 'block';
+      default:
+        return 'unknown';
+    }
+  }
 
-	render () {
-		const { symbol } = this.state;
-		const type = this.convertSymbolToType(symbol);
-
-		return (
-			<div className={`maze-cell ${type}`} />
-		);
-	}
-	
-	convertSymbolToType = (symbol) => {
-		switch (symbol) {
-			case '.':
-				return 'road';
-			case '#':
-				return 'block';
-			default:
-				return 'unknown';
-		}
-	}
+  render() {
+    const { type } = this.state;
+    const { isEditable, typeChanged } = this.props;
+    const typeClassName = this.makeTypeCssFriendly(type);
+    return (
+      <div className={`maze-cell ${typeClassName}`} onClick={() => isEditable && typeChanged(type)} />
+    );
+  }
 }
 
 Cell.propTypes = {
-	initialSymbol: PropTypes.string,
-	isEditable: PropTypes.bool
+  initialType: PropTypes.string,
+  isEditable: PropTypes.bool,
+  typeChanged: PropTypes.func.isRequired,
 };
 
 Cell.defaultProps = {
-	initialSymbol: '#',
-	isEditable: true
+  initialType: '#',
+  isEditable: true
 };
 
 export default Cell;

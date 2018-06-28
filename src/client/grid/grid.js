@@ -24,7 +24,7 @@ class Grid extends Component {
     const { modelChanged } = this.props;
     model[rowIndex][colIndex] = type;
     this.setState({ model });
-    modelChanged(model);
+    modelChanged && modelChanged(model);
   }
 
   rowBuilder = (row, rowIndex) => {
@@ -59,7 +59,7 @@ Grid.propTypes = {
 };
 
 Grid.defaultProps = {
-  modelChanged: () => { alert('default'); }
+  modelChanged: null
 };
 
 export default Grid;

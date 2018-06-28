@@ -5,8 +5,19 @@ import './app.css';
 export default class App extends Component {
   constructor() {
     super();
+    const model = [
+      ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#'],
+      ['#', 'A', '.', '.', '.', '#', '.', '.', '.', '#'],
+      ['#', '.', '#', '.', '#', '#', '.', '#', '.', '#'],
+      ['#', '.', '#', '.', '#', '#', '.', '#', '.', '#'],
+      ['#', '.', '#', '.', '.', '.', '.', '#', 'B', '#'],
+      ['#', '.', '#', '.', '#', '#', '.', '#', '.', '#'],
+      ['#', '.', '.', '.', '.', '#', '.', '.', '.', '#'],
+      ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#']
+    ];
+
     this.state = {
-      model: [],
+      model,
       solutionModel: [] 
     };
   }
@@ -16,18 +27,23 @@ export default class App extends Component {
   }
 
   solve = () => {
-    fetch('/api/getMazeSolution')
-      .then(res => res.json())
-      .then(solution => this.setState({ solutionModel: solution.model }));
+    const { model } = this.state;
+
+    fetch("/api/getMazeSolution", {
+      method: "post",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ model })
+    })
+    .then(res => res.json())
+    .then(solution => this.setState({ solutionModel: solution.model }));
   }
 
   render() {
-    const { solutionModel } = this.state;
-    const model = [
-      ['a', '.', '.'],
-      ['.', '#', '.'],
-      ['.', '.', '.']
-    ];
+    const { model, solutionModel } = this.state;
+
     return (
       <div>
         <h1>Maze Solver</h1>

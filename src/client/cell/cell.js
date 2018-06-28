@@ -17,6 +17,12 @@ class Cell extends Component {
         return 'road';
       case '#':
         return 'block';
+      case 'A':
+        return 'start';
+      case 'B':
+        return 'end';
+        case '@':
+      return 'solution'; 
       default:
         return 'unknown';
     }

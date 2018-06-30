@@ -23,6 +23,7 @@ export default class App extends Component {
     // ];
 
     this.state = {
+      editorState: '.',
       model,
       solutionModel: [] 
     };
@@ -48,13 +49,13 @@ export default class App extends Component {
   }
 
   render() {
-    const { model, solutionModel } = this.state;
+    const { model, solutionModel, editorState } = this.state;
 
     return (
       <div>
         <h1>Maze Solver</h1>
         <h2>Create your maze:</h2>
-        <Grid initialModel={model} modelChanged={this.onModelChanged} />
+        <Grid editorType={editorState} initialModel={model} modelChanged={this.onModelChanged} />
         <button type="submit" onClick={() => this.solve()}>Solve!</button>
         <h2>Solution:</h2>
         <Grid initialModel={solutionModel} isEditable={false} />

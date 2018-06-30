@@ -28,24 +28,33 @@ class Cell extends Component {
     }
   }
 
+  changeType = () => {
+    const { isEditable, typeChanged, editorType } = this.props;
+    if (isEditable) {
+      this.setState({ type: editorType });
+      typeChanged(editorType);
+    }
+  }
+
   render() {
     const { type } = this.state;
-    const { isEditable, typeChanged } = this.props;
     const typeClassName = this.makeTypeCssFriendly(type);
     return (
-      <div className={`maze-cell ${typeClassName}`} onClick={() => isEditable && typeChanged(type)} />
+      <div className={`maze-cell ${typeClassName}`} onClick={() => this.changeType()} />
     );
   }
 }
 
 Cell.propTypes = {
   initialType: PropTypes.string,
+  editorType: PropTypes.string,
   isEditable: PropTypes.bool,
   typeChanged: PropTypes.func.isRequired,
 };
 
 Cell.defaultProps = {
   initialType: '#',
+  editorType: '.',
   isEditable: true
 };
 

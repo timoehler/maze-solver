@@ -36,11 +36,14 @@ class Grid extends Component {
     );
   }
 
-  cellBuilder = (rowIndex, cellType, colIndex) => (
-    <div className="grid-cell" key={`grid-cell-${rowIndex}-${colIndex}`}>
-      <Cell initialType={cellType} typeChanged={this.onCellTypeChanged.bind(this, rowIndex, colIndex)} />
-    </div>
-  )
+  cellBuilder = (rowIndex, cellType, colIndex) => {
+    const { editorType } = this.props;
+    return (
+      <div className="grid-cell" key={`grid-cell-${rowIndex}-${colIndex}`}>
+        <Cell initialType={cellType} editorType={editorType} typeChanged={this.onCellTypeChanged.bind(this, rowIndex, colIndex)} />
+      </div>
+    );
+  }
 
   render() {
     const { model } = this.state;
@@ -55,11 +58,13 @@ class Grid extends Component {
 
 Grid.propTypes = {
   initialModel: PropTypes.array.isRequired,
-  modelChanged: PropTypes.func
+  modelChanged: PropTypes.func,
+  editorType: PropTypes.string,
 };
 
 Grid.defaultProps = {
-  modelChanged: null
+  modelChanged: null,
+  editorType: '.'
 };
 
 export default Grid;

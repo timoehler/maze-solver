@@ -7,6 +7,17 @@ class Grid extends Component {
   onCellTypeChanged = (rowIndex, colIndex, type) => {
     const { model } = this.props;
     const { modelChanged } = this.props;
+
+    if (type === 'A' || type === 'B') {
+      for (let i = 0; i < model.length; i++) {
+        for (let j = 0; j <= model[i].length; j++) {
+          if (model[i][j] === type) {
+            model[i][j] = '.';
+          }
+        }
+      }
+    }
+
     model[rowIndex][colIndex] = type;
     if (modelChanged) {
       modelChanged(model);

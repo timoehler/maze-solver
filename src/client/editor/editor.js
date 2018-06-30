@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './editor.less';
 
 class Editor extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
       type: '.',
@@ -21,11 +21,10 @@ class Editor extends Component {
     return (
       <div>
         Tool Palette
-        <button className="road" onClick={() => this.changeType('.')}>road</button>
-        <button className="block" onClick={() => this.changeType('#')}>block</button>
-        <button className="start" onClick={() => this.changeType('A')}>start</button>
-        <button className="end" onClick={() => this.changeType('B')}>end</button>
-
+        <button type="button" className={`road ${type === '.' ? 'selected' : ''}`} onClick={() => this.changeType('.')}>road</button>
+        <button type="button" className={`block ${type === '#' ? 'selected' : ''}`} onClick={() => this.changeType('#')}>block</button>
+        <button type="button" className={`start ${type === 'A' ? 'selected' : ''}`} onClick={() => this.changeType('A')}>start</button>
+        <button type="button" className={`end ${type === 'B' ? 'selected' : ''}`} onClick={() => this.changeType('B')}>end</button>
       </div>
     );
   }

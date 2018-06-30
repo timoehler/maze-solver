@@ -40,7 +40,7 @@ class Cell extends Component {
     const { type } = this.state;
     const typeClassName = this.makeTypeCssFriendly(type);
     return (
-      <div role="button" className={`maze-cell ${typeClassName}`} onKeyDown={() => this.changeType()} onClick={() => this.changeType()} />
+      <div role="button" tabIndex={0} className={`maze-cell ${typeClassName}`} onKeyDown={() => this.changeType()} onClick={() => this.changeType()} />
     );
   }
 }

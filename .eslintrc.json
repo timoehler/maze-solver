@@ -10,6 +10,7 @@
     "comma-dangle": "off",
     "react/jsx-filename-extension": "off",
     "jsx-a11y/heading-has-content": "off",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "no-plusplus": "off"
   }
 }

@@ -27,7 +27,7 @@ class Grid extends Component {
     return (
       <div className="grid-cell" key={`grid-cell-${rowIndex}-${colIndex}`}>
         <Cell
-          initialType={cellType}
+          type={cellType}
           editorType={editorType}
           typeChanged={this.onCellTypeChanged}
           rowIndex={rowIndex}

@@ -16,6 +16,12 @@ export default class App extends Component {
       ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#']
     ];
 
+    // const model = [
+    //   ['A', '.', '.'],
+    //   ['#', '.', '.'],
+    //   ['#', '.', 'B']
+    // ];
+
     this.state = {
       model,
       solutionModel: [] 

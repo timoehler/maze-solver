@@ -34,6 +34,10 @@ export default class App extends Component {
     this.setState({ model });
   }
 
+  onEditorChanged = (type) => {
+    this.setState({ editorState: type});
+  }
+
   solve = () => {
     const { model } = this.state;
 
@@ -56,7 +60,7 @@ export default class App extends Component {
       <div>
         <h1>Maze Solver</h1>
         <h2>Tool Palette</h2>
-        <Editor/>
+        <Editor selectionChanged={this.onEditorChanged}/>
         <h2>Create your maze:</h2>
         <Grid editorType={editorState} initialModel={model} modelChanged={this.onModelChanged} />
         <button type="submit" onClick={() => this.solve()}>Solve!</button>

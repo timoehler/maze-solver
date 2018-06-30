@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Grid from './grid/grid';
+import Editor from './editor/editor';
 import './app.css';
 
 export default class App extends Component {
@@ -54,6 +55,8 @@ export default class App extends Component {
     return (
       <div>
         <h1>Maze Solver</h1>
+        <h2>Tool Palette</h2>
+        <Editor/>
         <h2>Create your maze:</h2>
         <Grid editorType={editorState} initialModel={model} modelChanged={this.onModelChanged} />
         <button type="submit" onClick={() => this.solve()}>Solve!</button>

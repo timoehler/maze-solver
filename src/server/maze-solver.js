@@ -1,9 +1,3 @@
-module.exports = {
-  solveMap(model) {
-    return solve(model);
-  }
-};
-
 const getNode = (map, value) => {
   for (let row = 0; row < map.length; row++) {
     for (let col = 0; col < map[0].length; col++) {
@@ -15,9 +9,14 @@ const getNode = (map, value) => {
       }
     }
   }
+
+  return null;
 };
 
-const isInBounds = (node, map) => node.x >= 0 && node.y >= 0 && node.x < map[0].length && node.y < map.length;
+const isInBounds = (node, map) => node.x >= 0
+  && node.y >= 0
+  && node.x < map[0].length
+  && node.y < map.length;
 
 const isVisited = (node, pathMap) => pathMap[node.y][node.x].length > 0;
 
@@ -45,16 +44,6 @@ const updatePathMap = (pathMap, nodes, parent) => {
   nodes.forEach((node) => {
     pathMap[node.y][node.x] = path.slice();
   });
-};
-
-const solve = (symbolMap) => {
-  const pathMap = symbolMap.map(x => x.map(() => []));
-  const start = getNode(symbolMap, 'A');
-  const end = getNode(symbolMap, 'B');
-  const found = hydratePathMap(pathMap, symbolMap, start, end);
-  const solution = pathMap[end.y][end.x];
-
-  return found ? updateSymbolMapWithSolution(symbolMap, solution) : null;
 };
 
 const updateSymbolMapWithSolution = (symbolMap, solution) => {
@@ -86,4 +75,20 @@ const hydratePathMap = (pathMap, model, start, end) => {
   }
 
   return found;
+};
+
+const solve = (symbolMap) => {
+  const pathMap = symbolMap.map(x => x.map(() => []));
+  const start = getNode(symbolMap, 'A');
+  const end = getNode(symbolMap, 'B');
+  const found = hydratePathMap(pathMap, symbolMap, start, end);
+  const solution = pathMap[end.y][end.x];
+
+  return found ? updateSymbolMapWithSolution(symbolMap, solution) : null;
+};
+
+module.exports = {
+  solveMap(model) {
+    return solve(model);
+  }
 };

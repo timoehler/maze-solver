@@ -62,10 +62,10 @@ export default class App extends Component {
         <h2>Tool Palette</h2>
         <Editor selectionChanged={this.onEditorChanged} />
         <h2>Create your maze:</h2>
-        <Grid editorType={editorState} initialModel={model} modelChanged={this.onModelChanged} />
+        <Grid editorType={editorState} model={model} modelChanged={this.onModelChanged} />
         <button type="submit" onClick={() => this.solve()}>Solve!</button>
         <h2>Solution:</h2>
-        <Grid initialModel={solutionModel} isEditable={false} />
+        <Grid model={solutionModel} isEditable={false} />
       </div>
     );
   }

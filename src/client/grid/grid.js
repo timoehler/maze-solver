@@ -4,26 +4,10 @@ import Cell from '../cell/cell';
 import './grid.less';
 
 class Grid extends Component {
-  constructor(props) {
-    super();
-    const { initialModel } = props;
-    this.state = {
-      model: initialModel,
-    };
-  }
-
-  componentDidUpdate(prevProps) {
-    const { initialModel } = this.props;
-    if (prevProps.initialModel !== initialModel) {
-      this.setState({ model: initialModel });
-    }
-  }
-
   onCellTypeChanged = (rowIndex, colIndex, type) => {
-    const { model } = this.state;
+    const { model } = this.props;
     const { modelChanged } = this.props;
     model[rowIndex][colIndex] = type;
-    this.setState({ model });
     if (modelChanged) {
       modelChanged(model);
     }
@@ -54,7 +38,7 @@ class Grid extends Component {
   }
 
   render() {
-    const { model } = this.state;
+    const { model } = this.props;
     const rows = model.map(this.rowBuilder);
     return (
       <div className="grid-container">
@@ -65,7 +49,7 @@ class Grid extends Component {
 }
 
 Grid.propTypes = {
-  initialModel: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
+  model: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
   modelChanged: PropTypes.func,
   editorType: PropTypes.string,
 };

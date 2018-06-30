@@ -40,13 +40,14 @@ class Grid extends Component {
 
   cellBuilder = (rowIndex, cellType, colIndex) => {
     const { editorType } = this.props;
-    const changeCellType = this.onCellTypeChanged.bind(this, rowIndex, colIndex);
     return (
       <div className="grid-cell" key={`grid-cell-${rowIndex}-${colIndex}`}>
         <Cell
           initialType={cellType}
           editorType={editorType}
-          typeChanged={changeCellType}
+          typeChanged={this.onCellTypeChanged}
+          rowIndex={rowIndex}
+          colIndex={colIndex}
         />
       </div>
     );

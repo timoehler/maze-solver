@@ -29,10 +29,17 @@ class Cell extends Component {
   }
 
   changeType = () => {
-    const { isEditable, typeChanged, editorType } = this.props;
+    const {
+      isEditable,
+      typeChanged,
+      editorType,
+      rowIndex,
+      colIndex
+    } = this.props;
+
     if (isEditable) {
       this.setState({ type: editorType });
-      typeChanged(editorType);
+      typeChanged(rowIndex, colIndex, editorType);
     }
   }
 
@@ -50,6 +57,8 @@ Cell.propTypes = {
   editorType: PropTypes.string,
   isEditable: PropTypes.bool,
   typeChanged: PropTypes.func.isRequired,
+  rowIndex: PropTypes.number.isRequired,
+  colIndex: PropTypes.number.isRequired,
 };
 
 Cell.defaultProps = {

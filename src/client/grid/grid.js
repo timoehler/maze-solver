@@ -12,7 +12,7 @@ class Grid extends Component {
     };
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     const { initialModel } = this.props;
     if (prevProps.initialModel !== initialModel) {
       this.setState({ model: initialModel });

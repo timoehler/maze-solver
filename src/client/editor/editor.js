@@ -11,9 +11,9 @@ class Editor extends Component {
   }
 
   changeType = (type) => {
-  const { selectionChanged } = this.props;
-   this.setState({ type });
-   selectionChanged(type);
+    const { selectionChanged } = this.props;
+    this.setState({ type });
+    selectionChanged(type);
   }
 
   render() {

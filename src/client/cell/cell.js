@@ -21,8 +21,8 @@ class Cell extends Component {
         return 'start';
       case 'B':
         return 'end';
-        case '@':
-      return 'solution'; 
+      case '@':
+        return 'solution';
       default:
         return 'unknown';
     }

@@ -1,4 +1,5 @@
 const express = require('express');
+
 const app = express();
 const mazeSolver = require('./maze-solver');
 
@@ -9,4 +10,4 @@ app.listen(8080, () => console.log('Listening on port 8080!'));
 const getSolution = (req) => {
   const model = req.body.model;
   return mazeSolver.solveMap(model);
-}
+};

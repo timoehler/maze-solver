@@ -9,7 +9,6 @@ const getNode = (map, value) => {
       }
     }
   }
-
   return null;
 };
 
@@ -42,7 +41,7 @@ const updatePathMap = (pathMap, nodes, parent) => {
   const path = pathMap[parent.y][parent.x].slice();
   path.push(parent);
   nodes.forEach((node) => {
-    pathMap[node.y][node.x] = path.slice();
+    pathMap[node.y][node.x] = path;
   });
 };
 

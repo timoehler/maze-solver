@@ -1,31 +1,15 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 import Grid from './grid/grid';
 import Editor from './editor/editor';
-import './app.css';
+import './app.less';
 
 export default class App extends Component {
   constructor() {
     super();
-    const model = [
-      ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#'],
-      ['#', 'A', '.', '.', '.', '#', '.', '.', '.', '#'],
-      ['#', '.', '#', '.', '#', '#', '.', '#', '.', '#'],
-      ['#', '.', '#', '.', '#', '#', '.', '#', '.', '#'],
-      ['#', '.', '#', '.', '.', '.', '.', '#', 'B', '#'],
-      ['#', '.', '#', '.', '#', '#', '.', '#', '.', '#'],
-      ['#', '.', '.', '.', '.', '#', '.', '.', '.', '#'],
-      ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#']
-    ];
-
-    // const model = [
-    //   ['A', '.', '.'],
-    //   ['#', '.', '.'],
-    //   ['#', '.', 'B']
-    // ];
-
     this.state = {
-      editorState: '.',
-      model,
+      editorState: '#',
+      model: [],
       solutionModel: []
     };
   }
@@ -50,7 +34,8 @@ export default class App extends Component {
       body: JSON.stringify({ model })
     })
       .then(res => res.json())
-      .then(solution => this.setState({ solutionModel: solution.model }));
+      .then(solution => this.setState({ solutionModel: solution.model }))
+      .catch(() => alert('This maze is unsolvable!'));
   }
 
   resizeModel = (length) => {
@@ -115,23 +100,29 @@ export default class App extends Component {
     return (
       <div>
         <h1>Maze Solver</h1>
-        <h2>Tool Palette</h2>
-        <Editor selectionChanged={this.onEditorChanged} />
-        <h2>Maze type</h2>
-        <button type="submit" onClick={() => this.resizeModel('8')}>Small</button>
-        <button type="submit" onClick={() => this.resizeModel('16')}>Medium</button>
-        <button type="submit" onClick={() => this.resizeModel('32')}>Large</button>
-        <button type="submit" onClick={() => this.resizeModel('64')}>Extra-Large</button>
-        <button type="submit" onClick={() => this.usePreset('1')}>preset 1</button>
-        <button type="submit" onClick={() => this.usePreset('2')}>preset 2</button>
-        <button type="submit" onClick={() => this.usePreset('3')}>preset 3</button>
-        <button type="submit" onClick={() => this.usePreset('4')}>preset 4</button>
-
-        <h2>Create your maze:</h2>
-        <Grid editorType={editorState} model={model} modelChanged={this.onModelChanged} />
-        <button type="submit" onClick={() => this.solve()}>Solve!</button>
-        <h2>Solution:</h2>
-        <Grid model={solutionModel} isEditable={false} />
+        <p>Create a new map, or choose a preset.</p>
+        <div className="map-controls">
+          <div className="map-size-container">
+            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('8')}>Small</Button>
+            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('16')}>Medium</Button>
+            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('32')}>Large</Button>
+          </div>
+          <div className="map-preset-container">
+            <Button className="button" variant="outlined" onClick={() => this.usePreset('1')}>preset 1</Button>
+            <Button className="button" variant="outlined" onClick={() => this.usePreset('2')}>preset 2</Button>
+            <Button className="button" variant="outlined" onClick={() => this.usePreset('3')}>preset 3</Button>
+          </div>
+        </div>
+        <div className={`maze-container ${model.length === 0 && 'hidden'}`}>
+          <p className="select-message">Select a maze tool to draw your custom maze.</p>
+          <Editor selectionChanged={this.onEditorChanged} />
+          <Grid editorType={editorState} model={model} modelChanged={this.onModelChanged} />
+          <Button className="solve-button" variant="contained" color="secondary" onClick={() => this.solve()}>Solve!</Button>
+          <div className={`solution-container ${solutionModel.length === 0 && 'hidden'}`}>
+            <h2>Solution:</h2>
+            <Grid model={solutionModel} isEditable={false} />
+          </div>
+        </div>
       </div>
     );
   }

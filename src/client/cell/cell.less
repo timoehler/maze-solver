@@ -1,24 +1,30 @@
 .maze-cell {
 	width: 20px;
 	height: 20px;
-	border: 1px solid gray;
+	border: 1px solid rgba(0, 0, 0, .05);
 
 	&.road {
-		background: black;
+		background: #ddd;
 	}
 	&.block {
-		background: red;
+		background: #333;
 	}
 	&.start {
-		background: yellow;
+		background: #4cbb17;
 	}
 	&.end {
-		background: orange;
+		background: #4cbb17;
 	}
 	&.solution {
-		background: green;
+		background: #4cbb17;
 	}
 	&.unknown {
 		background: purple;
+	}
+
+	.type-label {
+		color: #fff;
+		margin: 0;
+		text-align: center;
 	}
 }

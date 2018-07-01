@@ -36,9 +36,12 @@ class Cell extends Component {
 
   render() {
     const { type } = this.props;
+    const displayType = type === 'A' || type === 'B' ? type : '';
     const typeClassName = this.makeTypeCssFriendly(type);
     return (
-      <div role="button" tabIndex={0} className={`maze-cell ${typeClassName}`} onKeyDown={() => this.changeType()} onClick={() => this.changeType()} />
+      <div role="button" tabIndex={0} className={`maze-cell ${typeClassName}`} onKeyDown={() => this.changeType()} onClick={() => this.changeType()}>
+        <p className="type-label">{displayType}</p>
+      </div>
     );
   }
 }

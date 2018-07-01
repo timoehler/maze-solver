@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import './editor.less';
 
 class Editor extends Component {
   constructor() {
     super();
     this.state = {
-      type: '.',
+      type: '#',
     };
   }
 
@@ -19,12 +20,11 @@ class Editor extends Component {
   render() {
     const { type } = this.state;
     return (
-      <div>
-        Tool Palette
-        <button type="button" className={`road ${type === '.' ? 'selected' : ''}`} onClick={() => this.changeType('.')}>road</button>
-        <button type="button" className={`block ${type === '#' ? 'selected' : ''}`} onClick={() => this.changeType('#')}>block</button>
-        <button type="button" className={`start ${type === 'A' ? 'selected' : ''}`} onClick={() => this.changeType('A')}>start</button>
-        <button type="button" className={`end ${type === 'B' ? 'selected' : ''}`} onClick={() => this.changeType('B')}>end</button>
+      <div className="tool-palette">
+        <Button variant={`${type === '#' ? 'contained' : 'outlined'}`} color="primary" className="tool" onClick={() => this.changeType('#')}>block</Button>
+        <Button variant={`${type === '.' ? 'contained' : 'outlined'}`} color="primary" className="tool" onClick={() => this.changeType('.')}>road</Button>
+        <Button variant={`${type === 'A' ? 'contained' : 'outlined'}`} color="primary" className="tool" onClick={() => this.changeType('A')}>start</Button>
+        <Button variant={`${type === 'B' ? 'contained' : 'outlined'}`} color="primary" className="tool" onClick={() => this.changeType('B')}>destination</Button>
       </div>
     );
   }

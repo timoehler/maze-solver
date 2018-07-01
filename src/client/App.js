@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from './grid/grid';
 import Editor from './editor/editor';
+import { maze1 } from './presets/maze1';
+import { maze2 } from './presets/maze2';
+import { maze3 } from './presets/maze3';
+
 import './app.less';
 
 export default class App extends Component {
@@ -50,43 +54,18 @@ export default class App extends Component {
     this.setState({ model: newModel });
   }
 
-
   usePreset = (preset) => {
     let newModel = [];
 
     switch (preset) {
       case '1':
-        newModel = [
-          ['A', '.', '.'],
-          ['#', '.', '.'],
-          ['#', '.', 'B']
-        ];
+        newModel = maze1;
         break;
       case '2':
-        newModel = [
-          ['A', '.', '.'],
-          ['#', '.', '.'],
-          ['#', '.', 'B']
-        ];
+        newModel = maze2;
         break;
       case '3':
-        newModel = [
-          ['A', '.', '.'],
-          ['#', '.', '.'],
-          ['#', '.', 'B']
-        ];
-        break;
-      case '4':
-        newModel = [
-          ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#'],
-          ['#', 'A', '.', '.', '.', '#', '.', '.', '.', '#'],
-          ['#', '.', '#', '.', '#', '#', '.', '#', '.', '#'],
-          ['#', '.', '#', '.', '#', '#', '.', '#', '.', '#'],
-          ['#', '.', '#', '.', '.', '.', '.', '#', 'B', '#'],
-          ['#', '.', '#', '.', '#', '#', '.', '#', '.', '#'],
-          ['#', '.', '.', '.', '.', '#', '.', '.', '.', '#'],
-          ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#']
-        ];
+        newModel = maze3;
         break;
       default:
     }

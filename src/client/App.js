@@ -103,9 +103,9 @@ export default class App extends Component {
         <p>Create a new map, or choose a preset.</p>
         <div className="map-controls">
           <div className="map-size-container">
-            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('8')}>Small</Button>
-            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('16')}>Medium</Button>
-            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('32')}>Large</Button>
+            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('6')}>Small</Button>
+            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('12')}>Medium</Button>
+            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('18')}>Large</Button>
           </div>
           <div className="map-preset-container">
             <Button className="button" variant="outlined" onClick={() => this.usePreset('1')}>preset 1</Button>

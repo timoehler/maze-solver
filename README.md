@@ -1,5 +1,5 @@
 # maze-solver
-A single page application that builds and solves mazes
+A single page application that builds, modifies, and solves mazes.
 
 ![screenshot](https://github.com/timoehler/maze-solver/blob/master/screenshots/maze-solver.png)
 
@@ -9,7 +9,7 @@ A single page application that builds and solves mazes
 `git clone https://github.com/timoehler/maze-solver`
 
 1. Navigate into directory:
-cd maze-solver
+`cd maze-solver`
 
 1. Install dependencies:
 `npm install`
@@ -26,3 +26,12 @@ cd maze-solver
 
 1. Start production server
 `npm run prod`
+
+# Built With:
+* React
+* Node.js
+* Express
+* Webpack
+
+# Contributing
+* Create Pull Request into 'Master' branch.

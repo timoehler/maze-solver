@@ -1,6 +1,8 @@
 # maze-solver
 A single page application that builds and solves mazes
 
+![screenshot](https://github.com/timoehler/maze-solver/blob/master/screenshots/maze-solver.png)
+
 # Getting Started
 
 1. Clone the repository:

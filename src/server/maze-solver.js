@@ -82,8 +82,11 @@ const solve = (symbolMap) => {
   const end = getNode(symbolMap, 'B');
   const found = hydratePathMap(pathMap, symbolMap, start, end);
   const solution = pathMap[end.y][end.x];
-
-  return found ? updateSymbolMapWithSolution(symbolMap, solution) : null;
+  const model = found ? updateSymbolMapWithSolution(symbolMap, solution) : null;
+  return {
+    model,
+    length: solution.length + 1
+  };
 };
 
 module.exports = {

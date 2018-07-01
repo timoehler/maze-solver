@@ -13,6 +13,7 @@
     "react/jsx-one-expression-per-line": "off",
     "no-plusplus": "off",
     "no-param-reassign": "off",
-    "no-loop-func": "off"
+    "no-loop-func": "off",
+    "no-alert": "off"
   }
 }

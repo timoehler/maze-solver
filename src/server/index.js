@@ -9,5 +9,8 @@ const getSolution = (req) => {
 };
 
 app.use(express.json());
-app.post('/api/getMazeSolution', (req, res) => res.send({ model: getSolution(req) }));
+app.post('/api/getMazeSolution', (req, res) => {
+  const solution = getSolution(req);
+  res.send({ model: solution.model, length: solution.length });
+});
 app.listen(8080, () => console.log('Listening on port 8080!'));

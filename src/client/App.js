@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from './grid/grid';
 import Editor from './editor/editor';
-import { maze1 } from './presets/maze1';
-import { maze2 } from './presets/maze2';
-import { maze3 } from './presets/maze3';
+import maze1 from './presets/maze1';
+import maze2 from './presets/maze2';
+import maze3 from './presets/maze3';
 
 import './app.less';
 
@@ -14,7 +14,8 @@ export default class App extends Component {
     this.state = {
       editorState: '#',
       model: [],
-      solutionModel: []
+      solutionModel: [],
+      solutionLength: 0
     };
   }
 
@@ -38,7 +39,10 @@ export default class App extends Component {
       body: JSON.stringify({ model })
     })
       .then(res => res.json())
-      .then(solution => this.setState({ solutionModel: solution.model }))
+      .then(solution => this.setState({
+        solutionModel: solution.model,
+        solutionLength: solution.length
+      }))
       .catch(() => alert('This maze is unsolvable!'));
   }
 
@@ -74,17 +78,19 @@ export default class App extends Component {
   }
 
   render() {
-    const { model, solutionModel, editorState } = this.state;
+    const {
+      model, solutionModel, solutionLength, editorState
+    } = this.state;
 
     return (
       <div>
         <h1>Maze Solver</h1>
-        <p>Create a new map, or choose a preset.</p>
+        <p>Create a new map, or choose a preset:</p>
         <div className="map-controls">
           <div className="map-size-container">
-            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('6')}>Small</Button>
-            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('12')}>Medium</Button>
-            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('18')}>Large</Button>
+            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('6')}>Small Map</Button>
+            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('12')}>Medium Map</Button>
+            <Button className="button" variant="outlined" color="primary" onClick={() => this.resizeModel('18')}>Large Map</Button>
           </div>
           <div className="map-preset-container">
             <Button className="button" variant="outlined" onClick={() => this.usePreset('1')}>preset 1</Button>
@@ -93,12 +99,13 @@ export default class App extends Component {
           </div>
         </div>
         <div className={`maze-container ${model.length === 0 && 'hidden'}`}>
-          <p className="select-message">Select a maze tool to draw your custom maze.</p>
+          <p className="select-message">Select a maze tool to customize your maze.</p>
           <Editor selectionChanged={this.onEditorChanged} />
           <Grid editorType={editorState} model={model} modelChanged={this.onModelChanged} />
           <Button className="solve-button" variant="contained" color="secondary" onClick={() => this.solve()}>Solve!</Button>
           <div className={`solution-container ${solutionModel.length === 0 && 'hidden'}`}>
             <h2>Solution:</h2>
+            <p>The last maze was solved in {solutionLength} steps.</p>
             <Grid model={solutionModel} isEditable={false} />
           </div>
         </div>

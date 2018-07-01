@@ -13,10 +13,14 @@ cd maze-solver
 `npm install`
 
 1. Start development server:
-`npm run dev`
+`npm start`
+
+1. Navigate to `http://localhost:3000/`
+
+# Production 
 
 1. Build for production
 `npm run build`
 
 1. Start production server
-`npm start`
+`npm run prod`
